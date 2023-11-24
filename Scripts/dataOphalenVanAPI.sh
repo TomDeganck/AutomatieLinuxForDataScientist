@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
-DATA_DIR="../Data"
+DATA_DIR="../data_storage"
 LOG_FILE="$DATA_DIR/weer.log"
 
 get_timestamp() {
