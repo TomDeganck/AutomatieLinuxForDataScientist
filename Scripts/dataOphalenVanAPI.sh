@@ -1,18 +1,10 @@
-# Opdracht Automation Linux For Data Scientist
-
-## API
-
-De API die ik gebruik is een weer API die meerder datapunten ontvangt
-en de data in JSON format geeft. De code om deze API te gebruiken is:
-
-> <<https://weatherapi-com.p.rapidapi.com/current.json?q=53.1,-0.13)>>
-
-Het script dat ik gebruik ziet er als volgt uit:
-
-```shell
 #!/bin/bash
 
-DATA_DIR="/pad/naar/jouw/directory"
+set -o nounset
+set -o errexit
+set -o pipefail
+
+DATA_DIR="../Data"
 LOG_FILE="$DATA_DIR/weer.log"
 
 get_timestamp() {
@@ -34,5 +26,3 @@ download_and_save_data() {
 download_and_save_data >> "$LOG_FILE" 2>&1
 
 exit $?
-
-```
