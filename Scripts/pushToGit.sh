@@ -9,6 +9,8 @@ TARGET_DIRECTORY="/home/tom/AutomatieLinuxForDataScientist"
 
 cd "$TARGET_DIRECTORY"
 
+git pull
+
 ./Scripts/dataOphalenVanAPI.sh
 
 git add .
