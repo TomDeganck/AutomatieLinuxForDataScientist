@@ -43,4 +43,12 @@ exit $?
 4. Ik voer het bestand uit en de error uitvoer sla ik op in de log file.
 5. Ik stop het programma met de nodige error.
 
-##
+## Automatisatie van data
+
+voor het automatiseren van het ophalen van de data heb ik crontab gebruikt en een raspberry Pi
+in de crontab heb ik volgende code staan
+´´crontab´
+
+0,30 \* \* \* \* ////AutomatieLinuxForDataScientist/Scripts/pushToGit.sh
+
+´´´
