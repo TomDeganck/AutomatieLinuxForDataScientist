@@ -47,8 +47,48 @@ exit $?
 
 voor het automatiseren van het ophalen van de data heb ik crontab gebruikt en een raspberry Pi
 in de crontab heb ik volgende code staan
-´´crontab´
 
-0,30 \* \* \* \* ////AutomatieLinuxForDataScientist/Scripts/pushToGit.sh
+in de raspberry pi heb ik dit ingesteld als crontab
 
-´´´
+```shell
+MAILTO=""
+0,30 \* \* \* \* /pad/van/root/naar/repository/AutomatieLinuxForDataScientist/Scripts/pushToGit.sh
+
+```
+
+de reden waarom ik het script pushToGit gebruik is omdat ik elke keer als hij data ophaalt dat direct in mijn git reposetory zet en niet telkens manueel moet pushen
+
+pushToGit.sh ziet er als volgt uit:
+
+```shell
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+
+TARGET_DIRECTORY="/home/tom/AutomatieLinuxForDataScientist"
+
+cd "$TARGET_DIRECTORY"
+
+git pull
+
+./Scripts/dataOphalenVanAPI.sh
+
+git add .
+
+git commit -m "Automated commit - $(date +'%Y-%m-%d %H:%M:%S')"
+
+git push
+
+exit $?
+```
+
+1. Eerst zet ik de directory op waar mijn git repository heb staan omda hij alle commands moet uitvoeren op die directory.
+2. dan pull ik eerst de git zodanig als ik aanpassingen maak aan mijn code op mijn eigen pc dat hij die eerstaanpast en dan past uitvoer en er ook geen confilcten kunnen onstaan tussen de verschillende branches
+3. Daanra voer ik het data ophalen script uit.
+4. Nu stage het data bestand dat hij heeft opgehaald.
+5. daarna commit ik alles met als melding dat het een automatische commit is me de datum en de tijd van de commit.
+6. daarna push ik alles.
+7. en tenslotte sluit ik het programma af.
