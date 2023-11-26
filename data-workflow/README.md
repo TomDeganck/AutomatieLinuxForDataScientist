@@ -36,3 +36,11 @@ download_and_save_data >> "$LOG_FILE" 2>&1
 exit $?
 
 ```
+
+1. Eerst zet ik het pad goed waar de data in opgeslagen moet worden.
+2. Daarna zet ik waar de logs moeten opgeslagen worden.
+3. Dan maak ik een functie aan die met de wget de data van de API ophaalt en dat opslaat in de DATA_DIR en voeg ik ook een tijdstip toe aan het bestand.
+4. Ik voer het bestand uit en de error uitvoer sla ik op in de log file.
+5. Ik stop het programma met de nodige error.
+
+##
