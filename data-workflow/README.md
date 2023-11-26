@@ -12,7 +12,7 @@ Het script dat ik gebruik ziet er als volgt uit:
 ```shell
 #!/bin/bash
 
-DATA_DIR="/pad/naar/jouw/directory"
+DATA_DIR="/home/tom/AutomatieLinuxForDataScientist/data_storage"
 LOG_FILE="$DATA_DIR/weer.log"
 
 get_timestamp() {
