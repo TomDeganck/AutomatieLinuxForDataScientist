@@ -19,15 +19,3 @@ for json_file in data_storage/*.json; do
 
     echo "$timestamp,$co2,$temp,$humidity" >> "$output_csv"
 done
-
-
-
-# Process HTML files
-for html_file in path/to/your/html/files/*.html; do
-    timestamp=$(grep -oP '(?<=<span class="timestamp">).*?(?=<\/span>)' "$html_file")
-    co2=$(grep -oP '(?<=<span class="co2">).*?(?=<\/span>)' "$html_file")
-    temp=$(grep -oP '(?<=<span class="temp">).*?(?=<\/span>)' "$html_file")
-    humidity=$(grep -oP '(?<=<span class="humidity">).*?(?=<\/span>)' "$html_file")
-
-    echo "$timestamp,$co2,$temp,$humidity" >> "$output_csv"
-done
