@@ -12,7 +12,7 @@ echo "Tijdstip,Locatie,Temperatuur,Vochtigheid,Dag,Windsnelheid,Windrichting,Gev
 
 # Process JSON files
 for json_file in ../data_storage/*.json; do
-    timestamp=$(jq '.localtime' "$json_file")
+    timestamp=$(jq '.location.localtime' "$json_file")
     locatie=$(jq '.name' "$json_file")
     temp=$(jq  '.temp_c' "$json_file")
     humidity=$(jq '.humidity' "$json_file")
