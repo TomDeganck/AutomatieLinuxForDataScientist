@@ -5,7 +5,7 @@ set -o errexit
 set -o pipefail
 
 # Output CSV file
-output_csv="output.csv"
+output_csv="../data_storage/output.csv"
 
 # Write CSV header
 echo "tijdstip,localtime,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Windsnelheid_mph,Windrichting,Gevoelstemperatuur_C,Gevoelstemperatuur_F,UV index" > "$output_csv"
