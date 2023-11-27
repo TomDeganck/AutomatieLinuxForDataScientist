@@ -48,7 +48,5 @@ plt.ylabel('Temperature (°C)')
 plt.legend()
 plt.grid(True)
 
-plt.show()
-
 plt.savefig(f'{path}/images/{time.time()}dataGrafiek.png')
 
