@@ -19,7 +19,7 @@ for json_file in ../data_storage/*.json; do
     isDay=$(jq '.current.is_day' "$json_file")
     windSpeed=$(jq '.current.wind_mph' "$json_file")
     windDirection=$(jq '.current.wind_dir' "$json_file")
-    feelTemperatuur=$(jq '.current.feekslike_c' "$json_file")
+    feelTemperatuur=$(jq '.current.feelslike_c' "$json_file")
     UVindx=$(jq '.current.uv' "$json_file")
     echo "$timestamp,$locatie,$temp,$humidity,$isDay,$windSpeed,$windDirection,$feelTemperatuur,$UVindx" >> "$output_csv"
 done
