@@ -19,6 +19,7 @@ plt.figure(figsize=(12, 6))
 plt.plot(data['Tijdstip'], data['Temperatuur_C'], label='Temperature (°C)')
 plt.plot(data['Tijdstip'], data['Gevoelstemperatuur_C'], label='Touch Temperature (°C)')
 plt.plot(data['Tijdstip'], data['Vochtigheid'], label='Vochtigheid')
+plt.plot(data['Tijdstip'], data['Windsnelheid_kph'], label='Windsnelheid (Km/H)')
 
 start_idx = 0
 for i in range(1, len(data['Dag'])):
