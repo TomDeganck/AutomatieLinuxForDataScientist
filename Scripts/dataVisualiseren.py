@@ -1,3 +1,4 @@
+import time
 from matplotlib.patches import Rectangle
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -44,5 +45,5 @@ plt.ylabel('Temperature (°C)')
 plt.legend()
 plt.grid(True)
 
-# Show the plot
-plt.show()
+plt.savefig(f'../images/{time.time()}dataGrafiek.png')
+

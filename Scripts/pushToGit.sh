@@ -13,6 +13,7 @@ git pull
 
 ./Scripts/dataOphalenVanAPI.sh
 ./Scripts/dataVerwerkenTotCSV.sh
+python ./Scripts/dataVisualiseren.py
 
 git add .
 
