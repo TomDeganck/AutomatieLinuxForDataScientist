@@ -8,7 +8,7 @@ set -o pipefail
 output_csv="../data_storage/output.csv"
 
 # Write CSV header
-echo "tijdstip,localtime,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Windsnelheid_mph,Windrichting,Gevoelstemperatuur_C,Gevoelstemperatuur_F,UV index" > "$output_csv"
+echo "tijdstip,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Windsnelheid_mph,Windrichting,Gevoelstemperatuur_C,Gevoelstemperatuur_F,UV index" > "$output_csv"
 
 # Process JSON files
 for json_file in ../data_storage/*.json; do
