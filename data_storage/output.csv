@@ -1,4 +1,4 @@
-tijdstip,localtime,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Windsnelheid_mph,Windrichting,Gevoelstemperatuur_C,Gevoelstemperatuur_F,UV index
+tijdstip,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Windsnelheid_mph,Windrichting,Gevoelstemperatuur_C,Gevoelstemperatuur_F,UV index
 "2023-11-24 14:42","Boston",6,42.8,56,1,31,19.2,"NNW",1.4,34.5,1
 "2023-11-24 14:42","Boston",6,42.8,56,1,31,19.2,"NNW",1.4,34.5,1
 "2023-11-24 15:00","Boston",6,42.8,56,1,31,19.2,"NNW",1.5,34.7,1
