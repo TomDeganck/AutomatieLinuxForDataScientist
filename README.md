@@ -14,7 +14,7 @@ _Opmerking: Voeg hier eventuele interpretaties en inzichten toe._
 
 ### Tabel 1: Statistieken
 
-| Statistiek | Waarde   |
+| Statistiek | Temperatuur   |
 | ---------- | -------- |
 | Mean       | [Waarde] |
 | Stdev      | [Waarde] |
