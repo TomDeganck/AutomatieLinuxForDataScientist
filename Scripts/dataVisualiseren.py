@@ -48,5 +48,9 @@ plt.ylabel('Temperature (°C)')
 plt.legend()
 plt.grid(True)
 
-plt.savefig(f'{path}/images/{time.time()}dataGrafiek.png')
+try:
+    os.rename(f'{path}/images/dataGrafiek.png',f'{path}/images/{time.time()}dataGrafiek.png')
+except:
+    print("niet kunnen hernoemen")
+plt.savefig(f'{path}/images/dataGrafiek.png')
 
