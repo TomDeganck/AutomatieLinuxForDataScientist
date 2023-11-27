@@ -12,6 +12,7 @@ cd "$TARGET_DIRECTORY"
 git pull
 
 ./Scripts/dataOphalenVanAPI.sh
+./Scripts/dataVerwerkenTotCSV.sh
 
 git add .
 
