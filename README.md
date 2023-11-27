@@ -14,12 +14,11 @@ _Opmerking: Voeg hier eventuele interpretaties en inzichten toe._
 
 ### Tabel 1: Statistieken
 
-| Statistiek | Temperatuur   |
-| ---------- | -------- |
-| Mean       | [Waarde] |
-| Stdev      | [Waarde] |
-| Min        | [Waarde] |
-| Max        | [Waarde] |
+| Statistiek | Temperatuur | GevoelsTemperatuur | Vochtigheid | Windsnelheid |
+| ---------- | ----------- | ------------------ | ----------- | ------------ |
+| Gemiddelde | [Waarde]    |                    |             |              |
+| Min        | [Waarde]    |                    |             |              |
+| Max        | [Waarde]    |                    |             |              |
 
 _Opmerking: Bespreek de belangrijkste bevindingen op basis van de statistieken._
 
