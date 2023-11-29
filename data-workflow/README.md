@@ -2,15 +2,27 @@
 
 ## API
 
-De API die ik gebruik is een weer API die meerder datapunten ontvangt
-en de data in JSON format geeft. De code om deze API te gebruiken is:
+Voor de API heb ik een weer API gekozen die vanalle variabelen terug geeft in json formaat
 
 > <<https://weatherapi-com.p.rapidapi.com/current.json?q=53.1,-0.13)>>
 
-Het script dat ik gebruik ziet er als volgt uit:
+Om de data van die API te halen en op te slaan heb ik een [shell script](#script-voor-data-op-te-halen-van-api) geschreven.
+Die shell script werkt als volgt:
+
+1.
+2. Daarna zet ik waar de logs moeten opgeslagen worden.
+3. Dan maak ik een functie aan die met de wget de data van de API ophaalt en dat opslaat in de DATA_DIR en voeg ik ook een tijdstip toe aan het bestand.
+4. Ik voer het bestand uit en de error uitvoer sla ik op in de log file.
+5. Ik stop het programma met de nodige error.
+
+### Script voor data op te halen van API
 
 ```shell
 #!/bin/bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
 
 DATA_DIR="/home/tom/AutomatieLinuxForDataScientist/data_storage"
 LOG_FILE="$DATA_DIR/weer.log"
@@ -36,12 +48,6 @@ download_and_save_data >> "$LOG_FILE" 2>&1
 exit $?
 
 ```
-
-1. Eerst zet ik het pad goed waar de data in opgeslagen moet worden.
-2. Daarna zet ik waar de logs moeten opgeslagen worden.
-3. Dan maak ik een functie aan die met de wget de data van de API ophaalt en dat opslaat in de DATA_DIR en voeg ik ook een tijdstip toe aan het bestand.
-4. Ik voer het bestand uit en de error uitvoer sla ik op in de log file.
-5. Ik stop het programma met de nodige error.
 
 ## Automatisatie van data
 
@@ -75,6 +81,8 @@ cd "$TARGET_DIRECTORY"
 git pull
 
 ./Scripts/dataOphalenVanAPI.sh
+./Scripts/dataVerwerkenTotCSV.sh
+python Scripts/dataVisualiseren.py
 
 git add .
 
@@ -87,8 +95,10 @@ exit $?
 
 1. Eerst zet ik de directory op waar mijn git repository heb staan omda hij alle commands moet uitvoeren op die directory.
 2. dan pull ik eerst de git zodanig als ik aanpassingen maak aan mijn code op mijn eigen pc dat hij die eerstaanpast en dan past uitvoer en er ook geen confilcten kunnen onstaan tussen de verschillende branches
-3. Daanra voer ik het data ophalen script uit.
-4. Nu stage het data bestand dat hij heeft opgehaald.
-5. daarna commit ik alles met als melding dat het een automatische commit is me de datum en de tijd van de commit.
-6. daarna push ik alles.
-7. en tenslotte sluit ik het programma af.
+3. Daanra voer ik het data ophalen [script](#script-voor-data-op-te-halen-van-api-dataophalen) uit.
+4. hierna voer ik het [script](#dataNaarCSV) uit om de rauwe jsons te verwerken naar een CSV bestand.
+5. Het laatste script dat ik uitvoer is hetgenen om de CSV om te zetten naar een grafiek en daarvan een .png op te slaan
+6. Nu stage het data bestand dat hij heeft opgehaald.
+7. daarna commit ik alles met als melding dat het een automatische commit is me de datum en de tijd van de commit.
+8. daarna push ik alles.
+9. en tenslotte sluit ik het programma af.
