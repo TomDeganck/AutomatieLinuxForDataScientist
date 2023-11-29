@@ -7,7 +7,9 @@ set -o pipefail
 input_folder="./images"
 output_gif="grafiek.gif"
 
+cd "$input_folder"
 
-convert -delay 100 -loop 0 "$input_folder/"*.jpg "$input_folder/$output_gif"
+convert -delay 20 -loop 0 *.png "$output_gif"
 
+cd .
 echo "GIF created: $output_gif"
