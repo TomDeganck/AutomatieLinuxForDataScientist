@@ -2,7 +2,7 @@
 
 ## Data Ophalen
 
-Voor de API heb ik een weer API gekozen die vanalle variabelen terug geeft in json formaat
+Voor de API heb ik een weer API gekozen die meerdere variabelen terug geeft in json formaat.
 
 > <<https://weatherapi-com.p.rapidapi.com/current.json?q=53.1,-0.13)>>
 
@@ -56,14 +56,14 @@ exit $?
 
 ## Data verwerken tot CSV
 
-Voor het verwerken van de rauwe data naar de nodige data punten heb ik gedaan in een [shell script](#script-voor-jsons-te-verwerken-tot-csv)
+Voor het verwerken van de rauwe data naar de nodige data punten heb ik gedaan in een [shell script](#script-voor-jsons-te-verwerken-tot-csv).
 
 Deze werkt als volgt:
 
 1. Ik stel de locatie in waar de output CSV data moet in opgeslagen worden.
 2. Ik echo de header van het [CSV bestand](/data_storage/output.csv) met de nodige variabele namen.
 3. Ik gebruik een for loop die in de directory "/data_storage/" elk .json bestand afgaat.
-4. Ik maak variabelen aan en haal de juiste waarden uit de json file met het commando jq.
+4. Ik maak variabelen aan en haal de juiste waarden uit de json file met het commando `jq`.
 5. Ik echo elke variable op de juiste plek in het [CSV bestand](/data_storage/output.csv).
 
 ### Script voor jsons te verwerken tot CSV
@@ -105,17 +105,17 @@ done
 ## CSV verwerken tot een grafiek
 
 Om de CSV data te verwerken tot een handige grafiek heb ik een [python programma](#python-progamma-om-data-te-visualiseren) geschreven.
-Deze werkt als volgt:
+Dit programma werkt als volgt:
 
 1. Import eerst alle nodige library's.
 2. Het pad instellen waar het [CSV bestand](/data_storage/output.csv) is opgeslagen.
 3. Lees het [CSV bestand](/data_storage/output.csv) in.
-4. Voeg een niewe kolom toe aan de [CSV bestand](/data_storage/output.csv) waar de tijdstippen in zijn geherformateert naar een meer leesbaar formaat.
+4. Voeg een niewe kolom toe aan het [CSV bestand](/data_storage/output.csv) waar de tijdstippen in zijn geherformateert naar een meer leesbaar formaat.
 5. Maak een grafiek aan.
-6. map alle data van het [CSV bestand](/data_storage/output.csv) met de juist tijdstip.
-7. voeg de juist namen en labels toe aan de grafiek.
-8. hernoem de oude grafiek met een tijdstip
-9. sla de grafiek op als [dataGrafiek.png](/images/dataGrafiek.png)
+6. Map alle data van het [CSV bestand](/data_storage/output.csv) met de juist tijdstip.
+7. Voeg de juist namen en labels toe aan de grafiek.
+8. Hernoem de oude grafiek met een tijdstip
+9. Sla de grafiek op als [dataGrafiek.png](/images/dataGrafiek.png)
 
 ### Python progamma om data te visualiseren
 
@@ -190,11 +190,11 @@ echo "GIF created: $output_gif"
 
 ## Automatisatie van procces
 
-voor het automatiseren van het ophalen van de data gebruik ik [crontab](#crontab-voor-automatisatie), een raspberry Pi en een [shell script](#script-voor-automatisatie)
+voor het automatiseren van het ophalen van de data. Gebruik ik [crontab](#crontab-voor-automatisatie), een raspberry Pi en een [shell script](#script-voor-automatisatie)
 
 De automatisatie werkt als volgt:
 
-1. De raspberry Pi heeft een lopende [crontab](#crontab-voor-automatisatie) die elk half uur word uitgevoerd.
+1. De raspberry Pi heeft een lopende [crontab](#crontab-voor-automatisatie) die elk half uur wordt uitgevoerd.
    1. In de crontab stel ik MAILTO gelijk aan niks omdat ik anders een error kreeg.
    2. Dan stel ik in dat hij elk uur op de 0<sup>e</sup> en de 30<sup>e</sup> het script [pushToGit](#script-voor-automatisatie) moet uitvoeren.
 2. In het [pushToGit](#script-voor-automatisatie) script stel ik het doel directory in als de home directory van de git
