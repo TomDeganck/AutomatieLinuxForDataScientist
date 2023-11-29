@@ -9,16 +9,16 @@ Voor de API heb ik een weer API gekozen die vanalle variabelen terug geeft in js
 Om de data van die API te halen en op te slaan heb ik een [shell script](#script-voor-data-op-te-halen-van-api) geschreven.
 Die shell script werkt als volgt:
 
-1. Het pad naar de opslagplaats declareren
-2. Een functie schrijven om het excate tijdstip te krijgen
-3. Een functie schrijven om de data op te halen
-   1. voert het wget commando uit
-   2. zet de methode op ophalen van data
-   3. stel de headers in met de juiste keys om de data binnen te krijgen
-   4. instellen waar de data moet opgeslagen worden met het juiste tijdstip
-   5. van welke site hij de data moet halen
-4. Ik sla de error uitvoer op in een log file genaam [weer.log](/data_storage/weer.log)
-5. Ik stop het programma met de nodige melding of het geslaagd is
+1. Het pad naar de opslagplaats declareren.
+2. Een functie schrijven om het excate tijdstip te krijgen.
+3. Een functie schrijven om de data op te halen.
+   1. voert het wget commando uit.
+   2. zet de methode op ophalen van data.
+   3. stel de headers in met de juiste keys om de data binnen te krijgen.
+   4. instellen waar de data moet opgeslagen worden met het juiste tijdstip.
+   5. van welke site hij de data moet halen.
+4. Ik sla de error uitvoer op in een log file genaam [weer.log](/data_storage/weer.log).
+5. Ik stop het programma met de nodige melding of het geslaagd is.
 
 ### Script voor data op te halen van API
 
@@ -60,11 +60,11 @@ Voor het verwerken van de rauwe data naar de nodige data punten heb ik gedaan in
 
 Deze werkt als volgt:
 
-1. Ik stel de locatie in waar de output CSV data moet in opgeslagen worden
+1. Ik stel de locatie in waar de output CSV data moet in opgeslagen worden.
 2. Ik echo de header van het [CSV bestand](/data_storage/output.csv) met de nodige variabele namen.
-3. Ik gebruik een for loop die in de directory "/data_storage/" elk .json bestand afgaat
-4. Ik maak variabelen aan en haal de juiste waarden uit de json file met het commando jq
-5. Ik echo elke variable op de juiste plek in het [CSV bestand](/data_storage/output.csv)
+3. Ik gebruik een for loop die in de directory "/data_storage/" elk .json bestand afgaat.
+4. Ik maak variabelen aan en haal de juiste waarden uit de json file met het commando jq.
+5. Ik echo elke variable op de juiste plek in het [CSV bestand](/data_storage/output.csv).
 
 ### Script voor jsons te verwerken tot CSV
 
@@ -161,19 +161,20 @@ voor het automatiseren van het ophalen van de data gebruik ik [crontab](#crontab
 
 De automatisatie werkt als volgt:
 
-1. De raspberry Pi heeft een lopende [crontab](#crontab-voor-automatisatie) die elk half uur word uitgevoerd
+1. De raspberry Pi heeft een lopende [crontab](#crontab-voor-automatisatie) die elk half uur word uitgevoerd.
    1. In de crontab stel ik MAILTO gelijk aan niks omdat ik anders een error kreeg.
-   2. Dan stel ik in dat hij elk uur op de 0<sup>e</sup> en de 30<sup>e</sup> het script [pushToGit](#script-voor-automatisatie) moet uitvoeren
+   2. Dan stel ik in dat hij elk uur op de 0<sup>e</sup> en de 30<sup>e</sup> het script [pushToGit](#script-voor-automatisatie) moet uitvoeren.
 2. In het [pushToGit](#script-voor-automatisatie) script stel ik het doel directory in als de home directory van de git
-3. Ik schakel naar die directory
+3. Ik schakel naar die directory.
 4. Ik pull alle data van binnen zodat er later geen confilcten kunnen onstaan.
-5. Ik voer het [script](#script-voor-data-op-te-halen-van-api) uit om data op te halen
-6. Ik voer het [script](#script-voor-jsons-te-verwerken-tot-csv) uit om de data om te zetten naar een CSV
-7. Ik voer het [python programma](#python-progamma-om-data-te-visualiseren) uit voor het visualiseren van de data
-8. Ik zorg dat alle veranderingen gestaged worden.
-9. Ik zorg dat alle veranderingen gecommit worden met als melding het tijdstip van de commit
-10. Ik push alles commits naar de main branch
-11. Ik sluit het programma af met melding of het gelukt is of niet.
+5. Ik voer het [script](#script-voor-data-op-te-halen-van-api) uit om data op te halen.
+6. Ik voer het [script](#script-voor-jsons-te-verwerken-tot-csv) uit om de data om te zetten naar een CSV.
+7. Ik voer het [python programma](#python-progamma-om-data-te-visualiseren) uit voor het visualiseren van de data.
+8. Ik voer het script uit om can alle gemaakte png's een gif the maken.
+9. Ik zorg dat alle veranderingen gestaged worden.
+10. Ik zorg dat alle veranderingen gecommit worden met als melding het tijdstip van de commit.
+11. Ik push alles commits naar de main branch.
+12. Ik sluit het programma af met melding of het gelukt is of niet.
 
 ### Crontab voor automatisatie
 
@@ -202,6 +203,7 @@ git pull
 ./Scripts/dataOphalenVanAPI.sh
 ./Scripts/dataVerwerkenTotCSV.sh
 python Scripts/dataVisualiseren.py
+./Scripts/maakGifVanGrafiek.sh
 
 git add .
 
