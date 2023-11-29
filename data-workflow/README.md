@@ -1,6 +1,6 @@
 # Opdracht Automation Linux For Data Scientist
 
-## API
+## Data Ophalen
 
 Voor de API heb ik een weer API gekozen die vanalle variabelen terug geeft in json formaat
 
@@ -9,11 +9,16 @@ Voor de API heb ik een weer API gekozen die vanalle variabelen terug geeft in js
 Om de data van die API te halen en op te slaan heb ik een [shell script](#script-voor-data-op-te-halen-van-api) geschreven.
 Die shell script werkt als volgt:
 
-1.
-2. Daarna zet ik waar de logs moeten opgeslagen worden.
-3. Dan maak ik een functie aan die met de wget de data van de API ophaalt en dat opslaat in de DATA_DIR en voeg ik ook een tijdstip toe aan het bestand.
-4. Ik voer het bestand uit en de error uitvoer sla ik op in de log file.
-5. Ik stop het programma met de nodige error.
+1. Het pad naar de opslagplaats declareren
+2. Een functie schrijven om het excate tijdstip te krijgen
+3. Een functie schrijven om de data op te halen
+   1. voert het wget commando uit
+   2. zet de methode op ophalen van data
+   3. stel de headers in met de juiste keys om de data binnen te krijgen
+   4. instellen waar de data moet opgeslagen worden met het juiste tijdstip
+   5. van welke site hij de data moet halen
+4. Ik sla de error uitvoer op in een log file genaam [weer.log](/data_storage/weer.log)
+5. Ik stop het programma met de nodige melding of het geslaagd is
 
 ### Script voor data op te halen van API
 
@@ -46,6 +51,63 @@ download_and_save_data() {
 download_and_save_data >> "$LOG_FILE" 2>&1
 
 exit $?
+
+```
+
+## Data verwerken tot CSV
+
+Voor het verwerken van de rauwe data naar de nodige data punten heb ik gedaan in een [shell script](#script-voor-jsons-te-verwerken-tot-csv)
+
+Deze werkt als volgt:
+
+1. Ik stel de locatie in waar de output CSV data moet in opgeslagen worden
+2. Ik echo de header van het [CSV bestand](/data_storage/output.csv) met de nodige variabele namen.
+3. Ik gebruik een for loop die in de directory "/data_storage/" elk .json bestand afgaat
+4. Ik maak variabelen aan en haal de juiste waarden uit de json file met het commando jq
+5. Ik echo elke variable op de juiste plek in het [CSV bestand](/data_storage/output.csv)
+
+### Script voor jsons te verwerken tot CSV
+
+```shell
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+# Output CSV file
+output_csv="./data_storage/output.csv"
+
+# Write CSV header
+echo "tijdstip,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Windsnelheid_mph,Windrichting,Gevoelstemperatuur_C,Gevoelstemperatuur_F,UV index" > "$output_csv"
+
+# Process JSON files
+for json_file in ./data_storage/*.json; do
+ timestamp=$(jq '.location.localtime' "$json_file")
+ locatie=$(jq '.location.name' "$json_file")
+ temp_c=$(jq '.current.temp_c' "$json_file")
+ temp_f=$(jq '.current.temp_f' "$json_file")
+ humidity=$(jq '.current.humidity' "$json_file")
+ isDay=$(jq '.current.is_day' "$json_file")
+ windSpeed_kph=$(jq '.current.wind_kph' "$json_file")
+ windSpeed_mph=$(jq '.current.wind_mph' "$json_file")
+ windDirection=$(jq '.current.wind_dir' "$json_file")
+ feelTemperatuur_c=$(jq '.current.feelslike_c' "$json_file")
+ feelTemperatuur_f=$(jq '.current.feelslike_f' "$json_file")
+ UVindx=$(jq '.current.uv' "$json_file")
+
+ echo "$timestamp,$locatie,$temp_c,$temp_f,$humidity,$isDay,$windSpeed_kph,$windSpeed_mph,$windDirection,$feelTemperatuur_c,$feelTemperatuur_f,$UVindx" >> "$output_csv"
+
+done
+
+```
+
+## CSV verwerken tot een grafiek
+
+Om de CSV data te verwerken tot een handige grafiek heb ik een python programma geschreven.
+Deze werkt als volgt:
+
+```python
 
 ```
 
