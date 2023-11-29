@@ -9,6 +9,7 @@ Dit rapport geeft een samenvatting van de resultaten van de data-analyse uitgevo
 ### Grafiek 1: [Beschrijving]
 
 ![Grafiek 1](images/dataGrafiek.png)
+![Grafiek 2](images/grafiek.gif)
 
 _Opmerking: Voeg hier eventuele interpretaties en inzichten toe._
 
