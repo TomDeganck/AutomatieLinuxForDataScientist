@@ -104,19 +104,78 @@ done
 
 ## CSV verwerken tot een grafiek
 
-Om de CSV data te verwerken tot een handige grafiek heb ik een python programma geschreven.
+Om de CSV data te verwerken tot een handige grafiek heb ik een [python programma](#python-progamma-om-data-te-visualiseren) geschreven.
 Deze werkt als volgt:
 
+1. Import eerst alle nodige library's.
+2. Het pad instellen waar het [CSV bestand](/data_storage/output.csv) is opgeslagen.
+3. Lees het [CSV bestand](/data_storage/output.csv) in.
+4. Voeg een niewe kolom toe aan de [CSV bestand](/data_storage/output.csv) waar de tijdstippen in zijn geherformateert naar een meer leesbaar formaat.
+5. Maak een grafiek aan.
+6. map alle data van het [CSV bestand](/data_storage/output.csv) met de juist tijdstip.
+7. voeg de juist namen en labels toe aan de grafiek.
+8. hernoem de oude grafiek met een tijdstip
+9. sla de grafiek op als [dataGrafiek.png](/images/dataGrafiek.png)
+
+### Python progamma om data te visualiseren
+
 ```python
+import time
+from matplotlib.patches import Rectangle
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib as m
+import numpy as np
+import os
+import pathlib
+
+path = os.getcwd()
+data = pd.read_csv(path + "/data_storage/output.csv")
+
+data['Tijdstip'] = pd.to_datetime(data['tijdstip'], format='%Y-%m-%d %H:%M')
+
+plt.figure(figsize=(12, 6))
+plt.plot(data['Tijdstip'], data['Temperatuur_C'], label='Temperature (°C)')
+plt.plot(data['Tijdstip'], data['Gevoelstemperatuur_C'], label='Touch Temperature (°C)')
+plt.plot(data['Tijdstip'], data['Vochtigheid'], label='Vochtigheid')
+plt.plot(data['Tijdstip'], data['Windsnelheid_kph'], label='Windsnelheid (Km/H)')
+
+plt.title('Temperature Evolution Over Time')
+plt.xlabel('Time')
+plt.ylabel('Temperature (°C)')
+plt.legend()
+plt.grid(True)
+
+try:
+    os.rename(f'{path}/images/dataGrafiek.png',f'{path}/images/{time.time()}dataGrafiek.png')
+except:
+    print("niet kunnen hernoemen")
+plt.savefig(f'{path}/images/dataGrafiek.png')
+
 
 ```
 
-## Automatisatie van data
+## Automatisatie van procces
 
-voor het automatiseren van het ophalen van de data heb ik crontab gebruikt en een raspberry Pi
-in de crontab heb ik volgende code staan
+voor het automatiseren van het ophalen van de data gebruik ik [crontab](#crontab-voor-automatisatie), een raspberry Pi en een [shell script](#script-voor-automatisatie)
 
-in de raspberry pi heb ik dit ingesteld als crontab
+De automatisatie werkt als volgt:
+
+1. De raspberry Pi heeft een lopende [crontab](#crontab-voor-automatisatie) die elk half uur word uitgevoerd
+   1. In de crontab stel ik MAILTO gelijk aan niks omdat ik anders een error kreeg.
+   2. Dan stel ik in dat hij elk uur op de 0<sup>e</sup> en de 30<sup>e</sup> het script [pushToGit](#script-voor-automatisatie) moet uitvoeren
+2. In het [pushToGit](#script-voor-automatisatie) script stel ik het doel directory in als de home directory van de git
+3. Ik schakel naar die directory
+4. Ik pull alle data van binnen zodat er later geen confilcten kunnen onstaan.
+5. Ik voer het [script](#script-voor-data-op-te-halen-van-api) uit om data op te halen
+6. Ik voer het [script](#script-voor-jsons-te-verwerken-tot-csv) uit om de data om te zetten naar een CSV
+7. Ik voer het [python programma](#python-progamma-om-data-te-visualiseren) uit voor het visualiseren van de data
+8. Ik zorg dat alle veranderingen gestaged worden.
+9. Ik zorg dat alle veranderingen gecommit worden met als melding het tijdstip van de commit
+10. Ik push alles commits naar de main branch
+11. Ik sluit het programma af met melding of het gelukt is of niet.
+
+### Crontab voor automatisatie
 
 ```shell
 MAILTO=""
@@ -124,9 +183,7 @@ MAILTO=""
 
 ```
 
-de reden waarom ik het script pushToGit gebruik is omdat ik elke keer als hij data ophaalt dat direct in mijn git reposetory zet en niet telkens manueel moet pushen
-
-pushToGit.sh ziet er als volgt uit:
+### Script voor automatisatie
 
 ```shell
 #!/bin/bash
@@ -154,13 +211,3 @@ git push
 
 exit $?
 ```
-
-1. Eerst zet ik de directory op waar mijn git repository heb staan omda hij alle commands moet uitvoeren op die directory.
-2. dan pull ik eerst de git zodanig als ik aanpassingen maak aan mijn code op mijn eigen pc dat hij die eerstaanpast en dan past uitvoer en er ook geen confilcten kunnen onstaan tussen de verschillende branches
-3. Daanra voer ik het data ophalen [script](#script-voor-data-op-te-halen-van-api-dataophalen) uit.
-4. hierna voer ik het [script](#dataNaarCSV) uit om de rauwe jsons te verwerken naar een CSV bestand.
-5. Het laatste script dat ik uitvoer is hetgenen om de CSV om te zetten naar een grafiek en daarvan een .png op te slaan
-6. Nu stage het data bestand dat hij heeft opgehaald.
-7. daarna commit ik alles met als melding dat het een automatische commit is me de datum en de tijd van de commit.
-8. daarna push ik alles.
-9. en tenslotte sluit ik het programma af.
