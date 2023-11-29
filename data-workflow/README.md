@@ -155,6 +155,39 @@ plt.savefig(f'{path}/images/dataGrafiek.png')
 
 ```
 
+## .png's verwerken tot een gif
+
+Als extra heb ik ook een [script](#script-voor-gif) geschreven dat van alle opgeslagen grafieken een gif maakt zodat je het verloopt van de metingen kan zien.
+Het [script](#script-voor-gif) werkt als volgt:
+
+1. Ik de directory waar de foto's gevonden kunnen worden en waar ook de GIF opgeslagen zal worden.
+2. Ik stel de naam in van de GIF
+3. Ik verander de working directory naar de directory van de foto's omdat alle commando's daar moeten worden uitgevoerd.
+4. Ik gebruik ImageMagick om de alle foto's in te lezen en om te zetten naar een GIF met telkens een tijd tussen de twee foto's van 20ms.
+5. Ik verander de working directory terug naar de algemene.
+6. Ik print in de terminal dat ik de GIF heb aangemaakt.
+
+### Script voor GIF
+
+```shell
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+input_folder="./images"
+output_gif="grafiek.gif"
+
+cd "$input_folder"
+
+convert -delay 20 -loop 0 *.png "$output_gif"
+
+cd .
+echo "GIF created: $output_gif"
+
+```
+
 ## Automatisatie van procces
 
 voor het automatiseren van het ophalen van de data gebruik ik [crontab](#crontab-voor-automatisatie), een raspberry Pi en een [shell script](#script-voor-automatisatie)
