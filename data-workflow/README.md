@@ -213,7 +213,7 @@ De automatisatie werkt als volgt:
 
 ```shell
 MAILTO=""
-0,30 \* \* \* \* /pad/van/root/naar/repository/AutomatieLinuxForDataScientist/Scripts/pushToGit.sh
+0,30 * * * * /pad/van/root/naar/repository/AutomatieLinuxForDataScientist/Scripts/pushToGit.sh
 
 ```
 
