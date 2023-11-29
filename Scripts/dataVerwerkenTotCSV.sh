@@ -28,3 +28,5 @@ for json_file in ./data_storage/*.json; do
 	echo "$timestamp,$locatie,$temp_c,$temp_f,$humidity,$isDay,$windSpeed_kph,$windSpeed_mph,$windDirection,$feelTemperatuur_c,$feelTemperatuur_f,$UVindx" >> "$output_csv"
 
 done
+
+echo "Data omgezet naar CSV"
