@@ -16,13 +16,13 @@ git pull
 python Scripts/dataVisualiseren.py
 ./Scripts/maakGifVanGrafiek.sh
 
+pandoc README.md -o verslag.pdf
+
 git add .
 
 git commit -m "Automated commit - $(date +'%Y-%m-%d %H:%M:%S')"
 
 git push
 
-sudo apt-get install -y pandoc
-pandoc README.md -o verslag.pdf
 
 exit $?
