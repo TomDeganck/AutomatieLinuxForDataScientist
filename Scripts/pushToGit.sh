@@ -23,6 +23,6 @@ git commit -m "Automated commit - $(date +'%Y-%m-%d %H:%M:%S')"
 git push
 
 sudo apt-get install -y pandoc
-pandoc input.md -o verslag.pdf
+pandoc README.md -o verslag.pdf
 
 exit $?
