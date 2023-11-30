@@ -1,5 +1,5 @@
 ---
-GmTemp: 0
+[//]: GmTemp: 0
 GmGevoelsTemp: 0
 GmVocht: 0
 GmWind: 0
@@ -32,7 +32,7 @@ _Opmerking: Voeg hier eventuele interpretaties en inzichten toe._
 
 | Statistiek | Temperatuur | GevoelsTemperatuur | Vochtigheid | Windsnelheid |
 | ---------- | ----------- | ------------------ | ----------- | ------------ |
-| Gemiddelde |      $GmTemp|                    |             |              |
+| Gemiddelde | $GmTemp     |                    |             |              |
 | Min        | [Waarde]    |                    |             |              |
 | Max        | [Waarde]    |                    |             |              |
 
