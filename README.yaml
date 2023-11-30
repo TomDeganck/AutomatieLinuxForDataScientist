@@ -1,0 +1,48 @@
+GmTemp: "0"
+GmGevoelsTemp: 0
+GmVocht: 0
+GmWind: 0
+MinTemp: 0
+MinGevoelsTemp: 0
+MinVocht: 0
+MinWind: 0
+MaxTemp: 0
+MaxGevoelsTemp: 0
+MaxVocht: 0
+MaxWind: 0
+
+title: "Data Analyse Rapport"
+
+Inleiding: |
+  Dit rapport geeft een samenvatting van de resultaten van de data-analyse uitgevoerd op [datum]. 
+  De analyse omvatte grafieken en statistieken die relevant zijn voor [onderwerp].
+
+AnalyseResultaten: |
+  ### Grafiek 1: [Beschrijving]
+  ![Grafiek 1](images/dataGrafiek.png)
+  ![Grafiek 2](images/grafiek.gif)
+
+  _Opmerking: Voeg hier eventuele interpretaties en inzichten toe._
+
+  ### Tabel 1: Statistieken
+  | Statistiek         | Temperatuur | GevoelsTemperatuur | Vochtigheid | Windsnelheid |
+  | ------------------ | ----------- | ------------------ | ----------- | ------------ |
+  | Gemiddelde         | $GmTemp      |                    |             |              |
+  | Min                | [Waarde]     |                    |             |              |
+  | Max                | [Waarde]     |                    |             |              |
+
+  _Opmerking: Bespreek de belangrijkste bevindingen op basis van de statistieken._
+
+Aanbevelingen:
+  - [Aanbeveling 1]
+  - [Aanbeveling 2]
+
+AutomatiseringScript: |
+  Een deel van het rapport is gegenereerd met behulp van een automatiseringsscript op [scriptdatum]. 
+  Het script heeft geholpen bij het invoegen van grafieken en statistieken in dit Markdown-bestand.
+
+Conclusie: |
+  Dit rapport biedt een overzicht van de resultaten van de data-analyse. 
+  Verdere interpretatie en acties zijn gebaseerd op de expertise van de data scientist.
+
+LaatstBijgewerktOp: "[timestamp]"
