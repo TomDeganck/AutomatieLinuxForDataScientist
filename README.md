@@ -1,5 +1,5 @@
 ---
-[//]: GmTemp: "0"
+[GmTemp]: "0"
 GmGevoelsTemp: 0
 GmVocht: 0
 GmWind: 0
