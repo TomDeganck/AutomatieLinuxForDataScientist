@@ -1,18 +1,3 @@
----
-[GmTemp]: "0"
-GmGevoelsTemp: 0
-GmVocht: 0
-GmWind: 0
-MinTemp: 0
-MinGevoelsTemp: 0
-MinVocht: 0
-MinWind: 0
-MaxTemp: 0
-MaxGevoelsTemp: 0
-MaxVocht: 0
-MaxWind: 0
----
-
 # Data Analyse Rapport
 
 ## Inleiding
