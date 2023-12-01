@@ -323,3 +323,4 @@ tijdstip,Locatie,Temperatuur_C,Temperatuur_F,Vochtigheid,Dag,Windsnelheid_kph,Wi
 "2023-12-01 8:59","Boston",-1,30.2,93,1,13,8.1,"NNW",-4.5,23.8,1
 "2023-12-01 9:24","Boston",-1,30.2,93,1,13,8.1,"NNW",-4.3,24.2,1
 "2023-12-01 9:59","Boston",0,32,93,1,11.2,6.9,"NNW",-3.1,26.3,1
+"2023-12-01 10:23","Boston",0,32,93,1,11.2,6.9,"NNW",-2.9,26.7,1
