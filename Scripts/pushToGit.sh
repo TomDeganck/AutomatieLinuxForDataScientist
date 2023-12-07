@@ -5,7 +5,7 @@ set -o errexit
 set -o pipefail
 
 
-TARGET_DIRECTORY="/home/tomde/AutomatieLinuxForDataScientist"
+TARGET_DIRECTORY="./AutomatieLinuxForDataScientist"
 
 cd "$TARGET_DIRECTORY"
 
